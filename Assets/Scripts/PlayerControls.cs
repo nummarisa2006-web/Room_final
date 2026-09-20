@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -39,11 +40,12 @@ public class PlayerControls : MonoBehaviour
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         float curSpeed = speed * Input.GetAxis("Vertical");
         controller.SimpleMove(forward * curSpeed);
-        if (Input.GetButtonDown("Jump") && groundedPlayer)
+        if (Input.GetKey(KeyCode.Space) && groundedPlayer)
         {
             isJumping = true;
             activeChar.GetComponent<Animator>().Play("Jump");
             playerVelocity.y += 10;
+            StartCoroutine(ResetJump());
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
@@ -66,5 +68,11 @@ public class PlayerControls : MonoBehaviour
                 activeChar.GetComponent<Animator>().Play("S");
             }
         }
+    }
+
+    IEnumerator ResetJump()
+    {
+        yield return new WaitForSeconds(0.9f);
+        isJumping = false;
     }
 }

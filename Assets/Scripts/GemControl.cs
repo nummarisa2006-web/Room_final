@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 
 public class GemControl : MonoBehaviour
 {
     [SerializeField] int rotateSpeed = 1;
     [SerializeField] AudioSource gemCollect;
+    [SerializeField] int gemScore = 100;
 
     void Update()
     {
@@ -12,7 +14,8 @@ public class GemControl : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        ScoreControl.totalScore += gemScore;
         gemCollect.Play();
-        Destroy(gemCollect);
+        Destroy(gameObject);
     }
 }
