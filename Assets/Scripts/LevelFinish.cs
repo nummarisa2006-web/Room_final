@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelFinish : MonoBehaviour
 {
@@ -14,5 +16,12 @@ public class LevelFinish : MonoBehaviour
         levelBGM.SetActive(false);
         levelJingle.Play();
         fadeOut.SetActive(true);
+        StartCoroutine(ToNextLevel());
     }
+
+    IEnumerator ToNextLevel()
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(5);
+    }    
 }

@@ -1,9 +1,11 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MeunMainControls : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] AudioSource buttonPress;
+    [SerializeField] GameObject fadeout;
     void Start()
     {
         
@@ -17,6 +19,19 @@ public class MeunMainControls : MonoBehaviour
 
     public void StartGame()
     {
+        buttonPress.Play();
+        fadeout.SetActive(true);
+        StartCoroutine(PlayTheGame());
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    IEnumerator PlayTheGame()
+    {
+        yield return new WaitForSeconds(2);
         SceneManager.LoadScene(4);
     }
 }
