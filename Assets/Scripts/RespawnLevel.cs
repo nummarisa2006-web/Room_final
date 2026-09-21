@@ -6,6 +6,6 @@ public class RespaenLevel : MonoBehaviour
     void Start()
     {
         ScoreControl.totalScore = 0;
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(LevelMaintain.levelNumber);
     }
 }

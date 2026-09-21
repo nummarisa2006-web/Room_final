@@ -11,7 +11,6 @@ public class MeunMainControls : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -21,6 +20,7 @@ public class MeunMainControls : MonoBehaviour
     {
         buttonPress.Play();
         fadeout.SetActive(true);
+        LevelMaintain.levelNumber = 4;
         StartCoroutine(PlayTheGame());
     }
 

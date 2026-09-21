@@ -16,12 +16,13 @@ public class LevelFinish : MonoBehaviour
         levelBGM.SetActive(false);
         levelJingle.Play();
         fadeOut.SetActive(true);
+        LevelMaintain.levelNumber += 1;
         StartCoroutine(ToNextLevel());
     }
 
     IEnumerator ToNextLevel()
     {
         yield return new WaitForSeconds(2);
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(LevelMaintain.levelNumber);
     }    
 }
